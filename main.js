@@ -1,3 +1,6 @@
+// can add mods with `curl http://localhost:3000/add-mod/447188`
+
+
 // main.js
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const { pipeline } = require('stream');
@@ -10,6 +13,36 @@ const streamPipeline = promisify(pipeline);
 const tmp = require('tmp-promise');
 const url = require('url');
 const axios = require('axios');
+const { createExtractorFromFile  } = require('node-unrar-js');
+
+const express = require('express');
+const express_server = express();
+const port = 3000;
+
+express_server.get('/add-mod/:modId', (req, res) => {
+  const modId = req.params.modId;
+  // Here you can do something with the modId
+
+  // send the modId to the renderer process
+  mainWindow.webContents.send('add-mod', modId);
+
+  res.send('Received modId: ' + modId);
+});
+
+express_server.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
+
+app.on('ready', createWindow)
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+app.on('activate', function () {
+  if (mainWindow === null) createWindow()
+})
 
 
 let mainWindow
@@ -21,6 +54,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
+    //   contextIsolation: false,
     }
   })
 
@@ -41,66 +75,66 @@ function createWindow () {
   })
 }
 
-app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
 
-app.on('activate', function () {
-  if (mainWindow === null) createWindow()
-})
+ipcMain.on('download-and-unzip', async (event, url, modFolder, modName) => {
+    const tmpfile = await tmp.file();
+  
+    const response = await axios.get(url, { responseType: 'stream' });
 
-app.setAsDefaultProtocolClient('my-app')
+    // Download the file
+    await streamPipeline(response.data, fs.createWriteStream(tmpfile.path));
 
-app.on('open-url', function (event, url) {
-  event.preventDefault()
-  // Here you can parse the url argument to get the mod URL and do something with it
-})
-const moveFiles = (srcDir, destDir) => {
-    if (fs.existsSync(srcDir)) {
-        fs.readdirSync(srcDir).forEach((file) => {
-            const currentPath = path.join(srcDir, file);
+    const modNameWithoutExtension = modName.slice(0, modName.lastIndexOf('.'));
+    const extractedFolderPath = path.join(modFolder, modNameWithoutExtension);
+    fs.ensureDirSync(extractedFolderPath);
+
+    // Depending on the file extension, use either ZIP or RAR extraction
+    const extension = path.extname(modName).toLowerCase();
+    if (extension === '.zip') {
+        const zip = new AdmZip(tmpfile.path);
+        zip.extractAllTo(/*true to overwrite files*/extractedFolderPath, true);
+    } else if (extension === '.rar') {
+      const extractor = await createExtractorFromFile({
+        filepath: tmpfile.path,
+        targetPath: extractedFolderPath
+      });
+      [...extractor.extract().files];
+    }
+
+    const moveContentsToTarget = (sourceDir, targetDir) => {
+        const files = fs.readdirSync(sourceDir);
+        files.forEach((file) => {
+            const oldPath = path.join(sourceDir, file);
+            const newPath = path.join(targetDir, file);
+            fs.renameSync(oldPath, newPath);
+        });
+    }
+
+    const findAndMove = (currentDir) => {
+        const files = fs.readdirSync(currentDir);
+        files.forEach((file) => {
+            const currentPath = path.join(currentDir, file);
             if (fs.lstatSync(currentPath).isDirectory()) {
-                moveFiles(currentPath, destDir);
-            } else {
-                fs.renameSync(currentPath, path.join(destDir, file));
+                if (file === 'romfs' || file === 'exefs') {
+                    const parentDir = path.dirname(currentPath);
+                    moveContentsToTarget(parentDir, path.join(modFolder, modNameWithoutExtension));
+                    if (fs.readdirSync(parentDir).length === 0) {
+                        fs.removeSync(parentDir); // Remove the top folder only if it's empty
+                    }
+                } else {
+                    findAndMove(currentPath);
+                }
             }
         });
     }
-};
 
-ipcMain.on('download-and-unzip', async (event, url, modFolder, modName) => {
-    // Create a temporary file for the download
-    const tmpfile = await tmp.file();
-    
-    const response = await axios.get(url, { responseType: 'stream' });
-  
-    // Download the file
-    await streamPipeline(response.data, fs.createWriteStream(tmpfile.path));
-  
-    const zip = new AdmZip(tmpfile.path);
-  
-    const extractedFolderPath = path.join(modFolder, modName.slice(0, modName.lastIndexOf('.zip')));
-    fs.ensureDirSync(extractedFolderPath);
-  
-    zip.extractAllTo(extractedFolderPath, true);
-  
-    // Search for the romfs and exefs directories, move them under modFolder/modName and remove extra directories
-    const files = fs.readdirSync(extractedFolderPath);
-    files.forEach((file) => {
-      const currentPath = path.join(extractedFolderPath, file);
-      if (fs.lstatSync(currentPath).isDirectory()) {
-        if (file === 'romfs' || file === 'exefs') {
-          const destPath = path.join(modFolder, modName.slice(0, modName.lastIndexOf('.zip')), file);
-          fs.ensureDirSync(destPath);
-          moveFiles(currentPath, destPath);
-        } else {
-          fs.rmdirSync(currentPath, { recursive: true });
-        }
-      }
-    });
-  
-    // Remove the temporary zip file
+    findAndMove(extractedFolderPath);
+
+    console.log(`File downloaded to: ${extractedFolderPath}`);
+
     await tmpfile.cleanup();
-  });
+});
+
+
+

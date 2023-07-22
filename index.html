@@ -58,7 +58,11 @@
                             localStorage.setItem("mod_id_list", JSON.stringify(Array.from(mod_id_list)))
 
                             const modItem = document.createElement('div');
+                            modItem.style = "display: flex; flex-direction: column; align-items: center;"
                             const modTitle = document.createElement('h2');
+                            const modDescription = document.createElement('p');
+                            const modLikes = document.createElement('p');
+                            const modAuthor = document.createElement('p');
                             const publishDate = document.createElement('p');
                             const lastUpdated = document.createElement('p');
                             const modImage = document.createElement('img');
@@ -75,6 +79,11 @@
 
                             // Display mod title, publish date, last updated date, and image
                             modTitle.innerHTML = modData._sName;
+
+                            modDescription.innerHTML = `description: ${modData._sDescription}`
+                            modAuthor.innerHTML = `author: ${modData._aSubmitter._sName}`
+                            modLikes.innerHTML = `likes: ${modData._nLikeCount}`
+
                             publishDate.innerHTML = `Published: ${parseTimestamp(modData._tsDateModified)}`;
                             lastUpdated.innerHTML = `Last updated: ${parseTimestamp(modData._tsDateAdded)}`;
 
@@ -111,6 +120,9 @@
                             };
 
                             modItem.appendChild(modTitle)
+                            modItem.appendChild(modDescription)
+                            modItem.appendChild(modLikes)
+                            modItem.appendChild(modAuthor)
                             modItem.appendChild(lastUpdated)
                             modItem.appendChild(publishDate)
                             modItem.appendChild(modImage)
@@ -138,6 +150,10 @@
 
             addModButton.addEventListener('click', addModFromInput);
             modIdInput.addEventListener('keydown', event => { if (event.key === 'Enter') { addModFromInput(); } });
+
+            window.api.receive('add-mod', (data) => {
+                addMod(data)
+            });
         </script>
     </body>
 </html>
