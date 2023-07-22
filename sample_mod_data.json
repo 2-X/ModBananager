@@ -1,0 +1,290 @@
+{
+    "_idRow": 456582,
+    "_nStatus": "0",
+    "_bIsPrivate": false,
+    "_tsDateModified": 1690040860,
+    "_tsDateAdded": 1689571248,
+    "_sProfileUrl": "https:\/\/gamebanana.com\/mods\/456582",
+    "_aPreviewMedia": {
+        "_aImages": [
+            {
+                "_sType": "screenshot",
+                "_sBaseUrl": "https:\/\/images.gamebanana.com\/img\/ss\/mods",
+                "_sFile": "64b4cd73d9adc.jpg",
+                "_sFile220": "220-90_64b4cd73d9adc.jpg",
+                "_hFile220": 124,
+                "_wFile220": 220,
+                "_sFile530": "530-90_64b4cd73d9adc.jpg",
+                "_hFile530": 298,
+                "_wFile530": 530,
+                "_sFile100": "100-90_64b4cd73d9adc.jpg",
+                "_hFile100": 56,
+                "_wFile100": 100,
+                "_sFile800": "800-90_64b4cd73d9adc.jpg",
+                "_hFile800": 450,
+                "_wFile800": 800
+            },
+            {
+                "_sType": "screenshot",
+                "_sBaseUrl": "https:\/\/images.gamebanana.com\/img\/ss\/mods",
+                "_sFile": "64b4cd8d728f3.jpg",
+                "_sFile100": "100-90_64b4cd8d728f3.jpg",
+                "_hFile100": 56,
+                "_wFile100": 100
+            }
+        ]
+    },
+    "_bIsFlagged": false,
+    "_sCommentsMode": "open",
+    "_bAccessorIsSubmitter": false,
+    "_bIsTrashed": false,
+    "_bIsWithheld": false,
+    "_sName": "Closer to Classic Camera",
+    "_nUpdatesCount": 2,
+    "_bHasUpdates": true,
+    "_tsDateUpdated": 1689649581,
+    "_nAllTodosCount": 0,
+    "_bHasTodos": false,
+    "_nPostCount": 13,
+    "_aAttributes": [],
+    "_aTags": [],
+    "_bCreatedBySubmitter": true,
+    "_bIsPorted": false,
+    "_nThanksCount": 2,
+    "_sInitialVisibility": "show",
+    "_sDownloadUrl": "https:\/\/gamebanana.com\/mods\/download\/456582",
+    "_nDownloadCount": 212,
+    "_aFiles": [
+        {
+            "_idRow": 1020803,
+            "_sFile": "closer_to_classic_camera_v1.zip",
+            "_nFilesize": 6008,
+            "_sDescription": "Main File v.1.1 - Closer camera angle with better auto camera turning",
+            "_tsDateAdded": 1689625468,
+            "_nDownloadCount": 105,
+            "_sAnalysisState": "done",
+            "_sDownloadUrl": "https:\/\/gamebanana.com\/dl\/1020803",
+            "_sMd5Checksum": "15afb800943a2b5207cd75d4d9157f97",
+            "_sClamAvResult": "clean",
+            "_sAnalysisResult": "File passed analysis",
+            "_bContainsExe": false
+        },
+        {
+            "_idRow": 1021034,
+            "_sFile": "closer_to_classic_-_vanilla_camera_angle.zip",
+            "_nFilesize": 6161,
+            "_sDescription": "Alternate Version - Vanilla camera angle with better auto camera turning",
+            "_tsDateAdded": 1689649254,
+            "_nDownloadCount": 52,
+            "_sAnalysisState": "done",
+            "_sDownloadUrl": "https:\/\/gamebanana.com\/dl\/1021034",
+            "_sMd5Checksum": "bf517a020705c1dfa59c6eac2106d52e",
+            "_sClamAvResult": "clean",
+            "_sAnalysisResult": "File passed analysis",
+            "_bContainsExe": false
+        }
+    ],
+    "_nSubscriberCount": 2,
+    "_aContributingStudios": [],
+    "_sLicense": "<a rel=\"license\" href=\"http:\/\/creativecommons.org\/licenses\/by-nc-nd\/4.0\/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https:\/\/i.creativecommons.org\/l\/by-nc-nd\/4.0\/88x31.png\" \/><\/a><br \/>This work is licensed under a <a rel=\"license\" href=\"http:\/\/creativecommons.org\/licenses\/by-nc-nd\/4.0\/\">Creative Commons Attribution-NonCommercial-NoDerivs 4.0 Unported License<\/a>.",
+    "_aLicenseChecklist": {
+        "yes": [
+            "Download and install this Mod"
+        ],
+        "ask": [
+            "Redistribute this Mod on other sites",
+            "Modify this Mod and distribute the modified Mod on GameBanana",
+            "Modify this Mod and distribute the modified Mod on another site",
+            "Use parts of this Mod in another Mod and distribute the Mod on GameBanana",
+            "Use parts of this Mod in another Mod and distribute the Mod on another site",
+            "Use this Mod or components of this Mod in adult\/NSFW content"
+        ],
+        "no": [
+            "Use this Mod or components of this Mod commercially"
+        ]
+    },
+    "_sDescription": "Better auto camera, more like previous games",
+    "_bGenerateTableOfContents": false,
+    "_sText": "Changed the camera to work more like it does in Wind Waker and Twilight \r\nPrincess. <br><br>After Z targeting, the auto camera will now follow your turns \r\nway more drastically. This allows you to move around more freely without\r\n having to constantly aim the camera yourself.<br><br>Also adjusted the camera angle, and moved it a bit closer to Link to feel more like it does in previous games.<br><br><br>*Is not compatible with any mod that changes playercamera.pack, it will need to be merged manually*<br><br>Two versions, only use one:<br>",
+    "_bIsObsolete": false,
+    "_nLikeCount": 18,
+    "_nViewCount": 2424,
+    "_sVersion": "1.1",
+    "_bAcceptsDonations": false,
+    "_bShowRipePromo": true,
+    "_aEmbeddables": {
+        "_sEmbeddableImageBaseUrl": "https:\/\/gamebanana.com\/mods\/embeddables\/456582",
+        "_aVariants": [
+            "small",
+            "small_square",
+            "medium",
+            "medium_square",
+            "medium_square_minimal",
+            "large",
+            "large_minimal",
+            "large_square",
+            "large_minimal_square",
+            "thumbnail"
+        ]
+    },
+    "_aSubmitter": {
+        "_idRow": 1599881,
+        "_sName": "TheCongressman",
+        "_sUserTitle": "Bananite",
+        "_sHonoraryTitle": "",
+        "_tsJoinDate": 1506200798,
+        "_sAvatarUrl": "https:\/\/images.gamebanana.com\/img\/av\/603aac7e173c7.png",
+        "_sSigUrl": "",
+        "_sProfileUrl": "https:\/\/gamebanana.com\/members\/1599881",
+        "_sPointsUrl": "https:\/\/gamebanana.com\/members\/logs\/pointslog\/1599881",
+        "_sMedalsUrl": "https:\/\/gamebanana.com\/members\/stats\/medals\/1599881",
+        "_bIsOnline": true,
+        "_sLocation": "<a href=\"https:\/\/gamebanana.com\">Home<\/a> > <a href=\"https:\/\/gamebanana.com\/games\">Games<\/a> > <a href=\"https:\/\/gamebanana.com\/games\/7617\">The Legend of Zelda: Tears of the Kingdom<\/a>",
+        "_sOnlineTitle": "",
+        "_sOfflineTitle": "",
+        "_nPoints": 7091,
+        "_nPointsRank": 1848,
+        "_aNormalMedals": [
+            [
+                "m_age_1.png",
+                "One month a member",
+                "normal",
+                155839
+            ],
+            [
+                "m_age_2.png",
+                "6 months a member",
+                "normal",
+                224323
+            ],
+            [
+                "m_age_3.png",
+                "1 year a member",
+                "normal",
+                224324
+            ],
+            [
+                "m_age_4.png",
+                "2 years a member",
+                "normal",
+                264651
+            ],
+            [
+                "returns_1.png",
+                "Returned 100 times",
+                "normal",
+                264748
+            ],
+            [
+                "m_pr_1.png",
+                "Reached 1,000 Points",
+                "normal",
+                319182
+            ],
+            [
+                "thanks_sent_1.png",
+                "Thanked 5 submitters",
+                "normal",
+                359206
+            ],
+            [
+                "m_pr_2.png",
+                "Reached 2,500 Points",
+                "normal",
+                412021
+            ],
+            [
+                "m_age_5.png",
+                "4 years a member",
+                "normal",
+                475709
+            ],
+            [
+                "features_1.png",
+                "Submission featured",
+                "normal",
+                1124163
+            ]
+        ],
+        "_aRareMedals": [
+            [
+                "returns_2.png",
+                "Returned 1000 times",
+                "rare",
+                334429
+            ]
+        ],
+        "_aLegendaryMedals": [
+            [
+                "returns_3.png",
+                "Returned 5000 times",
+                "legendary",
+                712579
+            ]
+        ],
+        "_bHasRipe": false,
+        "_sSubjectShaperCssCode": "",
+        "_sCooltipCssCode": "",
+        "_nBuddyCount": 3,
+        "_nSubscriberCount": 3,
+        "_aDonationMethods": [],
+        "_bAccessorIsBuddy": false,
+        "_bBuddyRequestExistsWithAccessor": false,
+        "_bAccessorIsSubscribed": false
+    },
+    "_aGame": {
+        "_idRow": 7617,
+        "_sName": "The Legend of Zelda: Tears of the Kingdom",
+        "_sAbbreviation": "TOTK",
+        "_sProfileUrl": "https:\/\/gamebanana.com\/games\/7617",
+        "_sIconUrl": "https:\/\/images.gamebanana.com\/img\/ico\/games\/6320d0fcae0d2.png",
+        "_sBannerUrl": "https:\/\/images.gamebanana.com\/img\/ico\/games\/6320d0fcae0d2.png",
+        "_nSubscriberCount": 3903,
+        "_bHasSubmissionQueue": false,
+        "_bAccessorIsSubscribed": false,
+        "_idAccessorSubscriptionRow": 0
+    },
+    "_aCategory": {
+        "_idRow": 22865,
+        "_sName": "Gameplay",
+        "_sModelName": "ModCategory",
+        "_sProfileUrl": "https:\/\/gamebanana.com\/mods\/cats\/22865",
+        "_sIconUrl": "https:\/\/images.gamebanana.com\/img\/ico\/ModCategory\/64682971f139e.png"
+    },
+    "_aFeaturings": {
+        "yesterday": {
+            "_sFeatureGroup": "yesterday",
+            "_sTitle": "Best of Yesterday",
+            "_sIconClasses": "MiscIcon FeaturedYesterdayIcon",
+            "_tsDate": 1689742801
+        },
+        "today": {
+            "_sFeatureGroup": "today",
+            "_sTitle": "Today's Pick",
+            "_sIconClasses": "MiscIcon FeaturedTodayIcon",
+            "_tsDate": 1689656401
+        }
+    },
+    "_aCredits": [
+        {
+            "_sGroupName": "Key Authors",
+            "_aAuthors": [
+                {
+                    "_sRole": "Mod Author",
+                    "_idRow": 1599881,
+                    "_sName": "TheCongressman",
+                    "_sProfileUrl": "https:\/\/gamebanana.com\/members\/1599881",
+                    "_bIsOnline": true
+                }
+            ]
+        }
+    ],
+    "_aEmbeddedMedia": [
+        "https:\/\/www.youtube.com\/watch?v=2vP4jNwHsTw"
+    ],
+    "_idAccessorSubscriptionRow": 0,
+    "_bAccessorIsSubscribed": false,
+    "_bAccessorHasThanked": false,
+    "_bAccessorHasUnliked": false,
+    "_bAccessorHasLiked": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "gamebananager",
+  "version": "1.0.0",
+  "description": "GUI for downloading, installing, and managing Gamebanana mods",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "axios": "^1.4.0",
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^3.3.1",
+    "path": "^0.12.7",
+    "tmp-promise": "^3.0.3"
+  }
+}

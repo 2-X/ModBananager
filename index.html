@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ModBananager</title>
+        <style>
+            #modList {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="modIdInput" placeholder="Enter mod ID here" />
+            <button id="addModButton">Add mod</button>
+        </div>
+        <div id="modList"></div>
+
+        <script>
+            let mod_id_list = JSON.parse(localStorage.getItem("mod_id_list")) || []
+            mod_id_list = new Set(mod_id_list)
+            console.log(mod_id_list)
+
+            Array.from(mod_id_list).forEach(mid => {
+                addMod(mid)
+            })
+
+            function parseTimestamp(unixTimestamp) {
+                const date = new Date(unixTimestamp * 1000);
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0'); // JS months are 0-based
+                const day = date.getDate().toString().padStart(2, '0');
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                const seconds = date.getSeconds().toString().padStart(2, '0');
+
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
+
+            const modIdInput = document.getElementById('modIdInput');
+            const addModButton = document.getElementById('addModButton');
+            const modList = document.getElementById('modList');
+
+            function addMod(modID) {
+                console.log("adding mod", modID)
+                let xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+                xhr.open('GET', `https://gamebanana.com/apiv11/Mod/${modID}/ProfilePage`);
+                xhr.setRequestHeader('authority', 'gamebanana.com');
+                xhr.setRequestHeader('accept', 'application/json, text/plain, */*');
+                xhr.setRequestHeader('accept-language', 'en-US,en;q=0.6');
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            mod_id_list.add(modID)
+                            localStorage.setItem("mod_id_list", JSON.stringify(Array.from(mod_id_list)))
+
+                            const modItem = document.createElement('div');
+                            const modTitle = document.createElement('h2');
+                            const publishDate = document.createElement('p');
+                            const lastUpdated = document.createElement('p');
+                            const modImage = document.createElement('img');
+                            const modDownloads = document.createElement('select');
+
+                            const blankModOption = document.createElement("option")
+                            blankModOption.setAttribute("disabled", "")
+                            blankModOption.setAttribute("selected", "")
+                            blankModOption.setAttribute("value", "")
+                            blankModOption.innerHTML = "-- select a version --"
+                            modDownloads.appendChild(blankModOption)
+
+                            let modData = JSON.parse(xhr.responseText);
+
+                            // Display mod title, publish date, last updated date, and image
+                            modTitle.innerHTML = modData._sName;
+                            publishDate.innerHTML = `Published: ${parseTimestamp(modData._tsDateModified)}`;
+                            lastUpdated.innerHTML = `Last updated: ${parseTimestamp(modData._tsDateAdded)}`;
+
+                            let largestImageURL = "";
+                            let largestImageWidth = 0;
+                            modData._aPreviewMedia._aImages.forEach(image => {
+                                Object.keys(image).forEach(key => {
+                                    if (key.startsWith('_sFile') && key.length > 6) {
+                                        let width = parseInt(key.slice(6));
+                                        if (width > largestImageWidth) {
+                                            largestImageWidth = width;
+                                            largestImageURL = `${image._sBaseUrl}/${image[key]}`;
+                                        }
+                                    }
+                                });
+                            });
+
+                            modImage.src = largestImageURL;
+                            
+                            modData._aFiles.forEach(downloadOption => {
+                                let option = document.createElement("option");
+                                option.textContent = downloadOption._sDescription;
+                                option.fileName = downloadOption._sFile;
+                                option.value = downloadOption._sDownloadUrl;
+                                modDownloads.appendChild(option);
+                            });
+                            
+                            // Handle dropdown selection to download and unpack the file
+                            modDownloads.onchange = function() {
+                                let selectedOption = this.options[this.selectedIndex];
+                                if (selectedOption) {
+                                    window.electron.downloadAndUnzip(selectedOption.value, '/mnt/c/Users/krisb/AppData/Roaming/Ryujinx/mods/contents/0100f2c0115b6000', selectedOption.fileName);
+                                }
+                            };
+
+                            modItem.appendChild(modTitle)
+                            modItem.appendChild(lastUpdated)
+                            modItem.appendChild(publishDate)
+                            modItem.appendChild(modImage)
+                            modItem.appendChild(modDownloads);
+
+                            modList.appendChild(modItem);
+                        };
+                    }
+                }
+
+                xhr.send();
+            }
+
+            function addModFromInput () {
+                const modID = modIdInput.value.trim()
+
+                if (modID === '') {
+                    return;
+                }
+
+                addMod(modID);
+
+                modIdInput.value = '';
+            }
+
+            addModButton.addEventListener('click', addModFromInput);
+            modIdInput.addEventListener('keydown', event => { if (event.key === 'Enter') { addModFromInput(); } });
+        </script>
+    </body>
+</html>
