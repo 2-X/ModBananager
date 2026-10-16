@@ -1,7 +1,7 @@
 {
   "name": "gamebananager",
   "version": "1.0.0",
-  "description": "GUI for downloading, installing, and managing Gamebanana mods",
+  "description": "GUI for downloading, installing, and managing GameBanana mods (SA2 Mod Loader + Ryujinx layouts)",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -22,5 +22,8 @@
     "tmp-promise": "^3.0.3",
     "unrar": "^0.2.0",
     "unrar-js": "^0.2.3"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0"
   }
 }

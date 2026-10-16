@@ -1,0 +1,14 @@
+{
+  "_comment": "GameBanana game id -> where downloaded mods go. layout: 'modini' = SA Mod Loader style (folder containing mod.ini goes into modFolder); 'ryujinx' = romfs/exefs layout under modFolder/<titleId>.",
+  "5855": {
+    "name": "Sonic Adventure 2",
+    "layout": "modini",
+    "modFolder": "D:\\SteamLibrary\\steamapps\\common\\Sonic Adventure 2\\mods"
+  },
+  "7617": {
+    "name": "Ryujinx (Switch)",
+    "layout": "ryujinx",
+    "modFolder": "C:\\Users\\krisb\\AppData\\Roaming\\Ryujinx\\mods\\contents",
+    "titleId": "0100f2c0115b6000"
+  }
+}
